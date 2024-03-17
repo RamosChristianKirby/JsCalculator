@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #9b59b6;
+        }
+
+        #calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 5px solid #cccccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            height: 300px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #68c3c0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #28b48c;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            width: 100%;
+            padding: 10px;
+            border-top: 1px solid #cccccc;
+            border-radius: 0 0 10px 10px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <label for="number1">1st Number:</label>
+        <input type="number" id="number1" name="number1" required><br><br>
+        <label for="number2">2nd Number:</label>
+        <input type="number" id="number2" name="number2" required><br><br>
+        <button id="multiply-btn">Multiply</button>
+        <button id="divide-btn">Divide</button><br><br>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const calculator = document.getElementById('calculator');
+        const number1 = document.getElementById('number1');
+        const number2 = document.getElementById('number2');
+        const results = document.getElementById('results');
+        const multiplyBtn = document.getElementById('multiply-btn');
+        const divideBtn = document.getElementById('divide-btn');
+
+        multiplyBtn.addEventListener('click', function() {
+            const num1 = parseFloat(number1.value);
+            const num2 = parseFloat(number2.value);
+
+            if (!isNaN(num1) && !isNaN(num2)) {
+                const result = num1 * num2;
+                results.innerHTML = `Result: ${result}`;
+            } else {
+                results.innerHTML = 'Please enter valid numbers.';
+            }
+
+            calculator.style.border = '2px solid green';
+        });
+
+        divideBtn.addEventListener('click', function() {
+            const num1 = parseFloat(number1.value);
+            const num2 = parseFloat(number2.value);
+
+            if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
+                const result = num1 / num2;
+                results.innerHTML = `Result: ${result}`;
+            } else {
+                results.innerHTML = 'Please enter valid numbers, and make sure the second number is not zero.';
+            }
+
+            if (num2 === 0) {
+                calculator.style.border = '2px solid red';
+            } else {
+                calculator.style.border = '2px solid green';
+            }
+        });
+    </script>
+</body>
+</html>
